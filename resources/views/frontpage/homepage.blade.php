@@ -15,7 +15,7 @@
       <div class="card-body">
         <h2 class="card-title">{{ $post->title }}</h2>
         <p class="card-text">{{ substr($post->content, 0, 150) }}</p>
-        <a href="#" class="btn btn-primary">Read More &rarr;</a>
+        <a href="{{ route('posts.show', ['id' => $post->id]) }}" class="btn btn-primary">Read More &rarr;</a>
       </div>
       <div class="card-footer text-muted">
         Posted on {{ $post->created_at }} by

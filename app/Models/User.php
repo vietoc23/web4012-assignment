@@ -38,10 +38,10 @@ class User extends Authenticatable
         $this->attributes['is_active'] = $value === 'true' ? true : false;
     }
 
-    public function getBirthdayAttribute($value)
-    {
-        return date('d-m-Y', strtotime($value));
-    }
+    // public function getBirthdayAttribute($value)
+    // {
+    //     return date('d-m-Y', strtotime($value));
+    // }
 
     public function setPasswordAttribute($value)
     {

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Comment;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -106,6 +108,13 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
+        // $posts = Post::where('category_id', $id)->get();
+
+        // foreach ($posts as $key => $post) {
+        //     Comment::where('post_id', $post->id)->delete();
+        //     $post->delete();
+        // }
+
         $category = Category::find($id);
 
         $category->delete();

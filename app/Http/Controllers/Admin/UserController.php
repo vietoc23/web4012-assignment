@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Comment;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -116,6 +119,29 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        
+        // Comment::where('user_id', $id)->delete();
+        
+        // $posts = Post::where('user_id', $id)->get();
+        
+        // foreach ($posts as $post) {
+        //     Comment::where('post_id', $post->id)->delete();
+        //     $post->delete();
+        // }
+
+        // $categories = Category::where('user_id', $id)->get();
+
+        // foreach ($categories as $category) {
+        //     $posts = Post::where('category_id', $category->id)->get();
+
+        //     foreach ($posts as $post) {
+        //         Comment::where('post_id', $post->id)->delete();
+        //         $post->delete();
+        //     }
+
+        //     $category->delete();
+        // }
+
         $user = User::find($id);
 
         $user->delete();

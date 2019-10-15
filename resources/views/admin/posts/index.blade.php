@@ -41,7 +41,7 @@
                                 @foreach ($posts as $post)
                                     <tr>
                                         <td>{{ $post->id }}</td>
-                                        <td>{{ $post->title }}</td>
+                                        <td><a href="{{ route('admin.posts.show', ['post' => $post->id]) }}">{{ $post->title }}</a></td>
                                         <td>{{ substr($post->content, 0, 150) . '...' }}</td>
                                         <td>{{ $post->category->name }}</td>
                                         <td>{{ $post->user->name }}</td>

@@ -21,7 +21,9 @@ Route::get('login', 'Frontpage\LoginController@getLoginForm')->name('auth.login-
 Route::post('login', 'Frontpage\LoginController@login')->name('auth.login');
 
 
-Route::get('posts/{id}', 'Frontpage\PostController@show');
+Route::get('posts/{id}', 'Frontpage\PostController@show')->name('posts.show');
+
+Route::post('posts/{post_id}/comments', 'Frontpage\PostController@storeComment')->name('posts.store-comment');
 
 
 Route::name('admin.')->prefix('admin')->middleware('admin-auth')->group(function () {

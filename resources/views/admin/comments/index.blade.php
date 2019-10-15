@@ -41,7 +41,7 @@
                                 @foreach ($comments as $comment)
                                     <tr>
                                         <td>{{ $comment->id }}</td>
-                                        <td>{{ $comment->post->title }}</td>
+                                        <td><a href="{{ route('admin.comments.show', ['comment' => $comment->id]) }}">{{ $comment->post->title }}</a></td>
                                         <td>{{ $comment->content }}</td>
                                         <td>{{ $comment->user->name }}</td>
                                         <td>{{ $comment->is_active == true ? 'yes' : 'no' }}</td>

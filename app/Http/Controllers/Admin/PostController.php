@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -65,9 +66,11 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
+        $categories = Category::all();
 
         return view('admin.posts.show', [
-            'post' => $post
+            'post' => $post,
+            'categories' => $categories
         ]);
     }
 
@@ -116,6 +119,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
+        // Comment::where('post_id', $id)->delete();
+
         $post = Post::find($id);
 
         $post->delete();

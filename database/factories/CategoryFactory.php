@@ -10,6 +10,6 @@ $factory->define(Category::class, function (Faker $faker) {
     $users = User::pluck('id')->toArray();
     return [
         'user_id' => $users[array_rand($users)],
-        'name' => $faker->text(65)
+        'name' => $faker->realText(30)
     ];
 });

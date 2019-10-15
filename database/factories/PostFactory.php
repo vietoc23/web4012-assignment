@@ -11,7 +11,7 @@ $factory->define(Post::class, function (Faker $faker) {
     $users = User::pluck('id')->toArray();
     $categories = Category::pluck('id')->toArray();
     return [
-        'title' => $faker->text(65),
+        'title' => $faker->realText(65),
         'content' => $faker->paragraph(100),
         'category_id' => $categories[array_rand($categories)],
         'user_id' => $users[array_rand($users)]

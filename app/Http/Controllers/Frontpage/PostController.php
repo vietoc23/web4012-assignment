@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Frontpage;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -96,5 +98,17 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function storeComment(Request $request)
+    {
+        Comment::create([
+            'post_id' => $request->post_id,
+            'content' => $request->content,
+            'user_id' => Auth::id(),
+            'is_active' => true
+        ]);
+
+        return redirect()->back();
     }
 }

@@ -22,8 +22,8 @@ $factory->define(User::class, function (Faker $faker) {
         'birthday' => $faker->date('Y-m-d', '2010-01-01'),
         'phone' => $faker->phoneNumber,
         'email' => $faker->unique()->safeEmail,
-        'password' => Hash::make('123456'), // password
+        'password' => bcrypt('123456'), // password
         'role' => $faker->numberBetween(1,2),
-        'is_active' => $faker->boolean()
+        'is_active' => true
     ];
 });

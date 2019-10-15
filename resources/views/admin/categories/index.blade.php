@@ -40,7 +40,7 @@
                                 @foreach ($categories as $category)
                                     <tr>
                                         <td>{{ $category->id }}</td>
-                                        <td>{{ $category->name }}</td>
+                                        <td><a href="{{ route('admin.categories.show', ['category' => $category->id]) }}">{{ $category->name }}</a></td>
                                         <td>{{ $category->user->name }}</td>
                                         <td>{{ count($category->posts) }}</td>
                                         <td>{{ $category->created_at }}</td>

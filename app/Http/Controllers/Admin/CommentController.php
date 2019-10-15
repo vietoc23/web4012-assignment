@@ -64,9 +64,11 @@ class CommentController extends Controller
     public function show($id)
     {
         $comment = Comment::find($id);
+        $posts = Post::all();
 
         return view('admin.comments.show', [
-            'comment' => $comment
+            'comment' => $comment,
+            'posts' => $posts
         ]);
     }
 
