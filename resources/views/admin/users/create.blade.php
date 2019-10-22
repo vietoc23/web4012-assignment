@@ -18,24 +18,34 @@
 
         <!-- Main content -->
         <section class="content container-fluid">
-
             <form action="{{ route('admin.users.store') }}" method="POST">
                 @csrf
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" name="name" class="form-control" id="name">
+                    <input type="text" name="name" class="form-control" id="name" value="{{ old('name') }}">
                 </div>
                 <div class="form-group">
                     <label for="birthday">Birthday</label>
-                    <input type="date" name="birthday" class="form-control" id="birthday">
+                    <input type="date" name="birthday" class="form-control" id="birthday" value="{{ old('birthday') }}">
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone number</label>
-                    <input type="text" name="phone" class="form-control" id="phone">
+                    <input type="text" name="phone" class="form-control" id="phone" value="{{ old('phone') }}">
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" name="email" class="form-control" id="email">
+                    <input type="email" name="email" class="form-control" id="email" value="{{ old('email') }}">
                 </div>
                 {{-- <div class="form-group">
                     <label for="password">Password</label>
@@ -52,14 +62,14 @@
                     <label for="is_active">Active?</label>
                     <div class="radio">
                         <label for="is_active_yes">
-                            <input type="radio" value="true" name="is_active" id="is_active_yes" checked>
+                            <input type="radio" value="1" name="is_active" id="is_active_yes" checked="true">
                             Yes
                         </label>
                     
                     </div>
                     <div class="radio">
                         <label for="is_active_no">
-                            <input type="radio" value="false" name="is_active" id="is_active_no">
+                            <input type="radio" value="0" name="is_active" id="is_active_no">
                             No
                         </label>
                     </div>

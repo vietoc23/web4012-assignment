@@ -38,8 +38,17 @@
 
     <form action="{{ route('admin.login') }}" method="POST">
         @csrf
+        @if ($errors->any())
+          <div class="alert alert-danger">
+              <ul>
+                  @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+              </ul>
+          </div>
+        @endif
       <div class="form-group has-feedback">
-        <input type="email" name="email" class="form-control" placeholder="Email">
+        <input type="email" name="email" class="form-control" placeholder="Email" value="{{ old('email') }}">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">

@@ -14,6 +14,6 @@ $factory->define(Comment::class, function (Faker $faker) {
         'post_id' => $posts[array_rand($posts)],
         'content' => $faker->paragraph(3),
         'user_id' => $users[array_rand($users)],
-        'is_active' => true
+        // 'is_active' => true
     ];
 });

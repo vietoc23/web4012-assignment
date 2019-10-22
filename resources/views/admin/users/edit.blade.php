@@ -22,21 +22,30 @@
             <form action="{{ route('admin.users.update', ['user' => $user->id]) }}" method="POST">
                 @csrf
                 @method('PUT')
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" name="name" class="form-control" id="name" value="{{ $user->name }}">
+                    <input type="text" name="name" class="form-control" id="name" value="{{ old('name', $user->name) }}">
                 </div>
                 <div class="form-group">
                     <label for="birthday">Birthday</label>
-                    <input type="date" name="birthday" class="form-control" id="birthday"  value="{{ $user->birthday }}">
+                    <input type="date" name="birthday" class="form-control" id="birthday"  value="{{ old('birthday', $user->birthday) }}">
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone number</label>
-                    <input type="text" name="phone" class="form-control" id="phone"  value="{{ $user->phone }}">
+                    <input type="text" name="phone" class="form-control" id="phone"  value="{{ old('phone', $user->phone) }}">
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" name="email" class="form-control" id="email" value="{{ $user->email }}">
+                    <input type="email" name="email" class="form-control" id="email" value="{{ old('email', $user->email) }}">
                 </div>
                 {{-- <div class="form-group">
                     <label for="password">Password</label>

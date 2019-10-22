@@ -9,12 +9,22 @@
     <style src="{{ asset('vendor/bootstrap/js/bootstrap.js') }}"></style>
 </head>
 <body>
-    <div class="container col-xs 6">
-        <form action="{{ route('auth.login') }}" method="post">
+    <hr>
+    <div class="container">
+        <form action="{{ route('front.auth.login') }}" method="post">
             @csrf
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" class="form-control">
+                <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}">
             
             </div>
             <div class="form-group">

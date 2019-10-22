@@ -120,7 +120,7 @@
               <!-- The user image in the navbar-->
               <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs">{{ $auth_user->name }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
@@ -128,7 +128,7 @@
                 <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
+                  {{ $auth_user->name }}
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -153,7 +153,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="{{ route('admin.signout') }}" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>

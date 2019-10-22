@@ -21,9 +21,18 @@
 
             <form action="{{ route('admin.posts.store') }}" method="POST">
                 @csrf
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="form-group">
                     <label for="title">Title</label>
-                    <input type="text" name="title" class="form-control" id="title">
+                    <input type="text" name="title" class="form-control" id="title" value="{{ old('title') }}">
                 </div>
                 
                 <div class="form-group">
@@ -36,7 +45,7 @@
                 </div>
                 <div class="form-group">
                     <label for="content">Content</label>
-                    <textarea name="content" id="content" class="form-control"></textarea>
+                    <textarea name="content" id="content" class="form-control">{{ old('content') }}</textarea>
 
                 </div>
                 

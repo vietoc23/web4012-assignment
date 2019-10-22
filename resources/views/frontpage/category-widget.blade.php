@@ -2,9 +2,9 @@
     <h5 class="card-header">Categories</h5>
     <div class="card-body">
         <ul class="list-unstyled">
-            @foreach ($categories as $category)
+            @foreach ($category_list as $category)
                 <li>
-                    <a href="">
+                    <a href="{{ route('front.category-posts.show', ['id' => $category->id]) }}">
                         {{ $category->name }}
                     </a>
                 </li>

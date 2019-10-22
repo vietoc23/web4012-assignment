@@ -5,8 +5,8 @@
 @section('content')
 <div class="col-md-8">
 
-  <h1 class="my-4">Page Heading
-    <small>Secondary Text</small>
+  <h1 class="my-4">Bloggggg
+    <small>Recent posts</small>
   </h1>
 
   <!-- Blog Post -->
@@ -15,11 +15,11 @@
       <div class="card-body">
         <h2 class="card-title">{{ $post->title }}</h2>
         <p class="card-text">{{ substr($post->content, 0, 150) }}</p>
-        <a href="{{ route('posts.show', ['id' => $post->id]) }}" class="btn btn-primary">Read More &rarr;</a>
+        <a href="{{ route('front.posts.show', ['id' => $post->id]) }}" class="btn btn-primary">Read More &rarr;</a>
       </div>
       <div class="card-footer text-muted">
         Posted on {{ $post->created_at }} by
-        <a href="#">{{ $post->user->name }}</a>
+        <a href="{{ route('front.user-posts.show', ['id' => $post->user->id]) }}">{{ $post->user->name }}</a>
       </div>
   
     </div>

@@ -35,7 +35,7 @@
       <div class="col-md-4">
 
         <!-- Search Widget -->
-        @include('frontpage.search-widget')
+        {{-- @include('frontpage.search-widget') --}}
 
         <!-- Categories Widget -->
         @include('frontpage.category-widget')

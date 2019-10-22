@@ -20,8 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('phone');
             $table->string('email', 191)->unique();
             $table->string('password');
-            $table->integer('role');
-            $table->boolean('is_active');
+            $table->integer('role')->default(config('role.member'));
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

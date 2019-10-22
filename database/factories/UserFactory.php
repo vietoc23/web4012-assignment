@@ -24,6 +24,5 @@ $factory->define(User::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => bcrypt('123456'), // password
         'role' => $faker->numberBetween(1,2),
-        'is_active' => true
     ];
 });

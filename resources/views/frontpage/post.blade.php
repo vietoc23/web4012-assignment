@@ -34,12 +34,22 @@
 
   <hr>
 
+  @if ($auth_user)
   <!-- Comments Form -->
   <div class="card my-4">
     <h5 class="card-header">Leave a Comment:</h5>
     <div class="card-body">
-      <form action="{{ route('posts.store-comment', ['post_id' => $post->id]) }}" method="POST">
+      <form action="{{ route('user.posts.store-comment', ['post_id' => $post->id]) }}" method="POST">
         @csrf
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="form-group">
           <textarea name="content" class="form-control" rows="3"></textarea>
         </div>
@@ -47,9 +57,12 @@
       </form>
     </div>
   </div>
+      
+  @endif
 
   <!-- Single Comment -->
   @foreach ($post->comments as $comment)
+    @if ($comment->is_active == true)
     <div class="media mb-4">
       <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
       <div class="media-body">
@@ -57,6 +70,8 @@
         {{ $comment->content }}
       </div>
     </div>
+        
+    @endif
       
   @endforeach
 

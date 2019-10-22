@@ -43,6 +43,11 @@ class User extends Authenticatable
     //     return date('d-m-Y', strtotime($value));
     // }
 
+    // public function setBirthdayAttribute($value)
+    // {
+    //     $this->attributes['birthday'] = date('YYYY-MM-DD', strtotime($value));
+    // }
+
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);

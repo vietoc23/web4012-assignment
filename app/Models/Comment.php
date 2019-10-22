@@ -10,6 +10,10 @@ class Comment extends Model
     
     protected $with = ['user'];
 
+    // protected $casts = [
+    //     'is_active' => 'boolean'
+    // ];
+
     public function post()
     {
         return $this->belongsTo(Post::class);
@@ -24,4 +28,11 @@ class Comment extends Model
     {
         $this->attributes['is_active'] = $value === 'true' ? true : false;
     }
+
+    public function getIsActiveAttribute()
+    {
+        return $this->attributes['is_active'] === 1 ? true : false;
+    }
+
+
 }

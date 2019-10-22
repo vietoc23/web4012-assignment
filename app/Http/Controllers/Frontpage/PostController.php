@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontpage;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\UserCommentRequest;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Post;
@@ -100,7 +101,7 @@ class PostController extends Controller
         //
     }
 
-    public function storeComment(Request $request)
+    public function storeComment(UserCommentRequest $request)
     {
         Comment::create([
             'post_id' => $request->post_id,
@@ -110,5 +111,25 @@ class PostController extends Controller
         ]);
 
         return redirect()->back();
+    }
+
+    public function showPostsByUsername($id)
+    {
+        $posts = Post::with(['comments', 'category', 'user'])->where('user_id', $id)->orderBy('updated_at', 'desc')->get();
+
+
+        return view('frontpage.posts-by-user', [
+            'posts' => $posts
+        ]);
+    }
+
+    public function showPostsByCategory($id)
+    {
+        $posts = Post::with(['comments', 'category', 'user'])->where('category_id', $id)->orderBy('updated_at', 'desc')->get();
+
+
+        return view('frontpage.posts-by-category', [
+            'posts' => $posts
+        ]);
     }
 }

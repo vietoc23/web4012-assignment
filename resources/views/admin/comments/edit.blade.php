@@ -22,6 +22,15 @@
             <form action="{{ route('admin.comments.update', ['comment' => $comment->id]) }}" method="POST">
                 @csrf
                 @method('PATCH')
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="form-group">
                     <label for="post">Post</label>
                     <select name="post_id" id="post" class="form-control" disabled>
@@ -33,7 +42,7 @@
                 </div>
                 <div class="form-group">
                     <label for="content">Content</label>
-                    <textarea name="content" id="content" class="form-control" disabled>{{ $comment->content }}</textarea>
+                    <textarea name="content" id="content" class="form-control">{{ old('name', $comment->content) }}</textarea>
                 </div>
                 
                 <div class="form-group">
