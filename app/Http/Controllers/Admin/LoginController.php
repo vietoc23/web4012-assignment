@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
@@ -21,10 +22,13 @@ class LoginController extends Controller
     public function authenticate(LoginRequest $request)
     {
         $credentials = $request->only('email', 'password');
-        // $this->clearLoginAttempts($request);
-        // dd($credentials, $this->attemptLogin($request));
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('admin/');
+
+        $user = User::where('email', $credentials['email'])->first();
+        if ($user->role === config('role.admin')) {
+            if (Auth::attempt($credentials)) {
+                return redirect()->intended('admin/');
+            }
+            
         }
 
         return redirect()->back();
