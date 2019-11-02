@@ -66,7 +66,8 @@ class Kernel extends HttpKernel
         'check_admin_login' => \App\Http\Middleware\CheckAdminLogin::class,
         'check_user_login' => \App\Http\Middleware\CheckUserLogin::class,
         'check_post_ownership' => \App\Http\Middleware\CheckPostOwnership::class,
-        'check_comment_ownership' => \App\Http\Middleware\CheckCommentOwnership::class
+        'check_comment_ownership' => \App\Http\Middleware\CheckCommentOwnership::class,
+        'check_current_login' => \App\Http\Middleware\CheckLogin::class
     ];
 
     /**

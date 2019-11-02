@@ -16,14 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::name('front.')->group(function () {
     Route::get('/', 'Frontpage\PostController@index')->name('index');
 
-    Route::get('register', 'Frontpage\RegisterController@create')->name('register.create');
-
-    Route::post('register', 'Frontpage\RegisterController@store')->name('register.store');
+    Route::middleware('check_current_login')->group(function () {
+        Route::get('register', 'Frontpage\RegisterController@create')->name('register.create');
     
-    Route::get('login', 'Frontpage\LoginController@getLoginForm')->name('auth.login-form');
-    
-    Route::post('login', 'Frontpage\LoginController@login')->name('auth.login');
-
+        Route::post('register', 'Frontpage\RegisterController@store')->name('register.store');
+        
+        Route::get('login', 'Frontpage\LoginController@getLoginForm')->name('auth.login-form');
+        
+        Route::post('login', 'Frontpage\LoginController@login')->name('auth.login');
+    });
     Route::get('signout', 'Frontpage\LoginController@signout')->name('auth.signout');
     
     Route::get('posts/{id}', 'Frontpage\PostController@show')->name('posts.show');
@@ -31,7 +32,6 @@ Route::name('front.')->group(function () {
     Route::get('user/{id}/posts', 'Frontpage\PostController@showPostsByUsername')->name('user-posts.show');
 
     Route::get('category/{id}/posts', 'Frontpage\PostController@showPostsByCategory')->name('category-posts.show');
-
 });
 
 Route::name('user.')->prefix('user')->middleware('check_user_login')->group(function () {

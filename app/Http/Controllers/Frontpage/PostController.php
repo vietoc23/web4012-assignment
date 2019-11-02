@@ -19,7 +19,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with(['user', 'category', 'comments'])->orderBy('id', 'desc')->get();
+        $query = \request('query');
+        // dd($query);
+        $posts = Post::with(['user', 'category', 'comments'])->where('title', 'like', '%' . $query . '%')->orderBy('id', 'desc')->get();
 
         $categories = Category::all();
 

@@ -12,7 +12,7 @@
   <!-- Author -->
   <p class="lead">
     by
-    <a href="#">{{ $post->user->name }}</a>
+    <a href="{{ route('front.user-posts.show', ['id' => $post->user->id]) }}">{{ $post->user->name }}</a>
   </p>
 
   <hr>
